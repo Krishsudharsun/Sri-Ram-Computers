@@ -32,6 +32,7 @@
     <meta name="twitter:description"
         content="Rentals, AMC, CCTV, networking, custom PCs, printer repair & on-site support across Chennai.">
     <meta name="twitter:image" content="https://www.sriramcomputers.com/img/hero2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* ========== RESET & GLOBAL STYLES ========== */
         * {
@@ -47,6 +48,13 @@
         :root {
             --font-body: 'DM Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --font-display: 'DM Serif Display', Georgia, serif;
+            --primary-color: #0070f3;
+            --primary-hover: #294bd2;
+            --dark-bg: #00117d;
+            --light-bg: #F0F8FF;
+            --card-shadow: 0 4px 30px rgba(0, 0, 0, 0.07);
+            --text-primary: #333;
+            --text-secondary: #666;
         }
 
         html,
@@ -55,11 +63,11 @@
             font-family: var(--font-body);
             line-height: 1.65;
             background-color: #ffffff;
-            color: #333;
+            color: var(--text-primary);
             -webkit-font-smoothing: antialiased;
-            height: 100%;
         }
 
+        /* ========== BUTTON STYLES ========== */
         .btn {
             text-decoration: none;
             color: inherit;
@@ -99,39 +107,42 @@
             display: block;
         }
 
+        /* ========== NAVIGATION ========== */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #F0F8FF;
-            flex-wrap: wrap;
-            padding: 16px 32px;
-            position: static;
+            background: var(--light-bg);
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .nav-logo {
-            height: 52px;
+            height: 50px;
             width: auto;
             object-fit: contain;
+            flex-shrink: 0;
         }
 
         .nav-gap {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+            gap: 2rem;
             align-items: center;
         }
 
         .nav-gap a {
             color: rgb(40, 40, 40);
             font-weight: 600;
-            font-size: 0.93rem;
+            font-size: 0.95rem;
             letter-spacing: 0.03em;
-            margin-left: 8px;
+            transition: color 0.3s ease;
         }
 
-        .hero {
-            background: transparent;
+        .nav-gap a:hover {
+            color: var(--primary-color);
         }
 
         .menu-toggle {
@@ -141,6 +152,7 @@
             background: transparent;
             border: 0;
             cursor: pointer;
+            padding: 0.5rem;
         }
 
         .menu-toggle span {
@@ -148,122 +160,69 @@
             height: 3px;
             background: rgb(40, 40, 40);
             border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
-        .bg-blur {
-            padding: 36px 40px;
-            margin-top: 1rem;
-            margin-bottom: 2rem;
-            background: #ffffff5e;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(3px);
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
         }
 
-        .button {
-            line-height: 1;
-            text-decoration: none;
-            display: inline-flex;
-            border: none;
-            cursor: pointer;
-            align-items: center;
-            gap: 0.75rem;
-            background-color: #0070f3;
-            color: #fff;
-            border-radius: 10rem;
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 0.93rem;
-            letter-spacing: 0.025em;
-            padding: 0.8rem 1.6rem 0.8rem 1.2rem;
-            white-space: nowrap;
-            overflow: hidden;
-            transition: background-color 0.25s, transform 0.15s, box-shadow 0.25s;
-            box-shadow: 0 2px 12px rgba(0, 112, 243, 0.2);
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
         }
 
-        .button__icon-wrapper {
-            flex-shrink: 0;
-            width: 26px;
-            height: 26px;
-            position: relative;
-            color: var(--clr);
-            background-color: #fff;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            overflow: hidden;
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
-        .button:hover .button__icon-wrapper {
-            color: #000;
-        }
-
-        .button__icon-svg--copy {
-            position: absolute;
-            transform: translate(-150%, 150%);
-        }
-
-        .button:hover .button__icon-svg:first-child {
-            transition: transform 0.3s ease-in-out;
-            transform: translate(150%, -150%);
-        }
-
-        .button:hover .button__icon-svg--copy {
-            transition: transform 0.3s ease-in-out 0.1s;
-            transform: translate(0);
-        }
-
-        .button:hover {
-            background: #294bd2;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(41, 75, 210, 0.3);
-        }
-
-        /* Hero Section */
+        /* ========== HERO SECTION ========== */
         .hero {
-            background-color: #F0F8FF;
+            background-color: var(--light-bg);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-bottom: 24px;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            min-height: 300px;
         }
 
         .hero h1 {
             font-family: var(--font-display);
-            font-size: 2.4rem;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
             font-weight: 400;
-            margin-bottom: 12px;
+            margin-bottom: 1rem;
             letter-spacing: -0.01em;
+            line-height: 1.2;
         }
 
         .hero p {
             font-family: var(--font-body);
-            font-size: 1rem;
-            margin-bottom: 20px;
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            margin-bottom: 1rem;
             line-height: 1.7;
+            max-width: 600px;
+            color: var(--text-secondary);
         }
 
         /* ========== SERVICES SECTION ========== */
         .services {
             background-color: #f0f4fc;
-            padding: 5rem 2rem;
-            text-align: center;
+            padding: clamp(2rem, 8vw, 5rem) 1.5rem;
         }
 
         .services .features {
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: 1fr;
             gap: 2rem;
-            margin-top: 2.5rem;
+            max-width: 1200px;
+            margin: 2.5rem auto 0;
         }
 
-        .services .bg-blur {
-            padding: 40px 24px;
+        .bg-blur {
+            padding: clamp(1.5rem, 4vw, 2.5rem);
             background: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.07);
+            box-shadow: var(--card-shadow);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             border-radius: 18px;
@@ -271,19 +230,21 @@
             text-align: left;
         }
 
-        .heading-with-line {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding: 20px;
+        .bg-blur p {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .bg-blur p:last-child {
+            margin-bottom: 0;
         }
 
         .card {
             background-color: white;
             border-radius: 18px;
-            padding: 1.75rem;
-            height: auto;
+            padding: clamp(1.25rem, 4vw, 2rem);
             transition: transform 0.2s ease, box-shadow 0.3s ease;
             text-align: center;
             border: 1px solid rgba(0, 0, 0, 0.04);
@@ -297,7 +258,7 @@
         .card h3 {
             color: #1e295c;
             font-family: var(--font-body);
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
             font-weight: 700;
             margin-top: 1.1rem;
             letter-spacing: -0.01em;
@@ -305,15 +266,15 @@
         }
 
         .card p {
-            color: #666;
+            color: var(--text-secondary);
             font-family: var(--font-body);
             font-size: 0.9rem;
             line-height: 1.7;
             margin-top: 0.4rem;
         }
 
-        .features .card img {
-            width: 90px;
+        .card img {
+            width: clamp(70px, 15vw, 100px);
             height: auto;
             margin: 0 auto;
             display: block;
@@ -325,37 +286,38 @@
         }
 
         .out {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1.5fr 2fr;
             gap: 1.5rem;
             align-items: stretch;
-            justify-content: space-between;
-            flex-wrap: nowrap;
         }
 
-        .out>.bg-blur {
-            flex: 2 1 0%;
-            min-width: 0;
+        .out > .bg-blur {
+            order: 2;
         }
 
-        .out>.card {
-            flex: 1.5 0 360px;
-            min-width: 360px;
-            max-width: 480px;
-            padding: 2rem;
+        .out > .card {
+            order: 1;
+        }
+
+        .out:nth-child(even) > .bg-blur {
+            order: 1;
+        }
+
+        .out:nth-child(even) > .card {
+            order: 2;
         }
 
         .out .card img {
-            width: 200px;
-            height: auto;
-            margin: 0 auto 1rem auto;
-            display: block;
+            width: clamp(80px, 18vw, 120px);
+            margin-bottom: 1rem;
         }
 
         /* ========== FOOTER ========== */
         .site-footer {
-            background-color: #00117d;
+            background-color: var(--dark-bg);
             color: #dbefff;
-            padding: 3rem 0;
+            padding: 3rem 1.5rem 1.5rem;
             font-family: var(--font-body);
         }
 
@@ -365,87 +327,67 @@
         }
 
         .footer-columns {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-bottom: 32px;
+            margin-bottom: 2rem;
         }
 
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-            margin-top: 50px;
-        }
-
-        .footer-column h4 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            font-family: var(--font-body);
-            line-height: 50px;
-        }
-
-        .footer-column a {
-            display: block;
-            margin: 6px 0;
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 15px;
-            font-family: var(--font-body);
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .footer-columns3 {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 32px;
-        }
-
+        .footer-column,
         .footer-column3 {
-            flex: 1;
-            min-width: 250px;
-            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
         }
 
+        .footer-column h4,
         .footer-column3 h4 {
             color: white;
             margin-bottom: 1rem;
-            font-size: 14px;
-            font-family: var(--font-body);
+            font-size: clamp(12px, 2vw, 14px);
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            line-height: 50px;
-            text-align: center;
+            font-family: var(--font-body);
         }
 
+        .footer-column a,
         .footer-column3 a {
             display: block;
             margin: 6px 0;
             color: white;
             text-decoration: none;
             transition: color 0.3s;
-            font-size: 15px;
+            font-size: clamp(13px, 1.5vw, 15px);
+            font-family: var(--font-body);
         }
 
+        .footer-column a:hover,
         .footer-column3 a:hover {
-            color: white;
+            color: #4fc3f7;
+        }
+
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: clamp(13px, 1.5vw, 15px);
+            line-height: 1.65;
+            margin-bottom: 1rem;
+            font-family: var(--font-body);
+        }
+
+        .footer-column iframe {
+            width: 100%;
+            max-width: 270px;
+            height: 270px;
+            border: none;
+            border-radius: 8px;
         }
 
         .social-buttons {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            margin-top: 1rem;
         }
 
         .social-buttons a {
@@ -461,12 +403,6 @@
             transition: transform 0.2s linear, border-radius 0.2s linear, box-shadow 0.2s;
         }
 
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
         .social-buttons.egeon a:hover {
             transform: rotate(-90deg);
             border-top-left-radius: 50%;
@@ -479,7 +415,7 @@
             transform: rotate(90deg);
         }
 
-        /* Colors */
+        /* Social Colors */
         .fb {
             background-color: #3b5998;
         }
@@ -500,18 +436,9 @@
             transition: transform 0.2s linear;
         }
 
-        .footer-column p {
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.82);
-            font-size: 15px;
-            line-height: 1.65;
-            margin-bottom: 20px;
-            font-family: var(--font-body);
-        }
-
         .footer-bottom {
             text-align: center;
-            font-size: 0.83rem;
+            font-size: clamp(0.75rem, 1.5vw, 0.85rem);
             color: #b3c4d9;
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -529,351 +456,247 @@
             text-decoration: underline;
         }
 
-        .footer-col1 {
-            align-items: center;
-            margin-left: 100px;
-            margin-top: 50px;
-        }
+        /* ========== RESPONSIVE DESIGN ========== */
 
-
-        /* ===================== 1024px and below ===================== */
+        /* Tablets - 1024px and below */
         @media (max-width: 1024px) {
-            .hero .container {
-                flex-direction: column;
-                text-align: center;
+            nav {
+                padding: 1rem 1rem;
             }
 
-            .container-abt {
-                flex-direction: column;
-                align-items: center;
-                padding: 40px 20px;
-                text-align: center;
+            .nav-logo {
+                height: 45px;
             }
 
-            .about-images {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-                width: 100%;
-                padding: 0 20px;
-            }
-
-            .about-images .col-left,
-            .about-images .col-right {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-            }
-
-            .about-images .col-left img,
-            .about-images .col-right img {
-                width: 100%;
-                max-width: 280px;
-                height: auto;
-                border-radius: 18px;
-            }
-
-            .about-text {
-                max-width: 100%;
-                padding: 30px 20px 0;
-                text-align: center;
-            }
-
-            .about-text .abt-h3 {
-                font-size: 2.1rem;
-            }
-
-            .about-text .abt-p {
-                font-size: 1rem;
-            }
-
-            .col-r-div {
-                width: 100%;
-                max-width: 280px;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            .services .features {
-                grid-template-columns: repeat(2, 1fr);
+            .nav-gap {
                 gap: 1.5rem;
             }
 
-            .features .card img {
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
+            .out {
+                grid-template-columns: 1fr;
             }
 
-            .card {
-                height: auto;
+            .out > .bg-blur,
+            .out > .card {
+                order: unset;
+            }
+
+            .out:nth-child(even) > .bg-blur,
+            .out:nth-child(even) > .card {
+                order: unset;
             }
 
             .footer-columns {
-                gap: 1.5rem;
-                padding: 0 20px;
-            }
-
-            .footer-column,
-            .footer-column3,
-            .footer-col1 {
-                flex: 1 1 45%;
-                text-align: left;
-                margin-left: 0;
-            }
-
-            .footer-column3 h4 {
-                text-align: left;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-
-        /* ===================== 768px and below ===================== */
+        /* Mobile - 768px and below */
         @media (max-width: 768px) {
-
             .menu-toggle {
                 display: flex;
             }
 
             .nav-gap {
-                display: none !important;
+                display: none;
                 flex-direction: column;
-                gap: 15px;
-                background: rgba(255, 255, 255, 0.97);
+                gap: 1rem;
                 position: absolute;
-                top: 70px;
-                right: 20px;
-                padding: 16px 20px;
-                border-radius: 12px;
-                z-index: 1000;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-                border: 1px solid rgba(0, 0, 0, 0.06);
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(240, 248, 255, 0.98);
+                padding: 1.5rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                z-index: 998;
             }
 
             .nav-gap.show {
-                display: flex !important;
+                display: flex;
             }
 
-            .about-images {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-                padding: 0 20px;
-                width: 100%;
+            .nav-gap a {
+                padding: 0.5rem 0;
+                font-size: 0.95rem;
             }
 
-            .about-images .col-left,
-            .about-images .col-right {
-                width: 100%;
-                justify-content: center;
+            .hero {
+                padding: 2rem 1rem;
+                min-height: auto;
             }
 
-            .about-images .col-left img,
-            .about-images .col-right img {
-                width: 100%;
-                max-width: 260px;
-                height: auto;
-                border-radius: 16px;
+            .hero h1 {
+                font-size: 2rem;
             }
 
-            .col-r-div {
-                width: 100%;
-                max-width: 260px;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            .about-text {
-                padding: 20px;
-                text-align: center;
-            }
-
-            .about-text .abt-h3 {
-                font-size: 1.9rem;
-            }
-
-            .about-text .abt-p {
-                font-size: 1rem;
-                padding: 0 5px;
+            .services {
+                padding: 2.5rem 1rem;
             }
 
             .services .features {
+                gap: 1.5rem;
+            }
+
+            .bg-blur {
+                padding: 1.5rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+            }
+
+            .card img {
+                width: 70px;
+            }
+
+            .card h3 {
+                font-size: 1rem;
+            }
+
+            .footer-columns {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
-            .services .heading-with-line {
-                flex-direction: column;
-                text-align: center;
-                padding: 10px;
-            }
-
-            .services .ser-h3 {
-                text-align: center;
-                padding-left: 0;
-                font-size: 2rem;
-            }
-
-            .vertical-line-section {
-                flex-direction: column;
-                align-items: center;
-                margin-top: 20px;
-                margin-bottom: 20px;
-            }
-
-            .vertical-line {
-                width: 100px;
-                height: 3px;
-                background-color: #1c1c1c;
-                margin: 0 auto;
-            }
-
-            .line-text {
-                margin: 0;
-                font-size: 0.95rem;
-                text-align: center;
-                max-width: 90%;
-            }
-
-            .features .card img {
-                width: 80px;
-                height: 80px;
-            }
-
-            .footer-columns {
-                flex-direction: column;
-                align-items: center;
-                padding: 0 20px;
-            }
-
-            .footer-column,
-            .footer-column3,
-            .footer-col1 {
-                width: 100%;
-                text-align: center;
-                margin: 20px 0;
-            }
-
-            .footer-column3 h4 {
-                text-align: center;
+            .footer-column iframe {
+                max-width: 100%;
+                height: 200px;
             }
 
             .social-buttons {
                 justify-content: center;
             }
 
-            .footer-column iframe {
-                width: 90%;
-                height: 200px;
+            .site-footer {
+                padding: 2rem 1rem 1rem;
             }
         }
 
-
-        /* ===================== 600px and below ===================== */
-        @media (max-width: 600px) {
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 2rem;
-            }
-        }
-
-
-        /* ===================== 480px and below ===================== */
+        /* Small devices - 480px and below */
         @media (max-width: 480px) {
+            nav {
+                padding: 0.75rem;
+                gap: 1rem;
+            }
+
+            .nav-logo {
+                height: 40px;
+            }
+
+            .menu-toggle {
+                padding: 0.25rem;
+            }
+
+            .menu-toggle span {
+                width: 22px;
+                height: 2.5px;
+            }
+
+            .hero {
+                padding: 1.5rem 1rem;
+            }
+
             .hero h1 {
-                font-size: 2.4rem;
+                font-size: 1.6rem;
+                margin-bottom: 0.75rem;
             }
 
-            .about-images {
-                padding: 0 16px;
+            .hero p {
+                font-size: 0.9rem;
+                margin-bottom: 0.75rem;
             }
 
-            .about-images .col-left img,
-            .about-images .col-right img {
-                width: 70% !important;
-                max-width: 200px !important;
-                height: auto !important;
-                border-radius: 12px;
-                display: block;
-                margin: 0 auto;
+            .services {
+                padding: 2rem 1rem;
             }
 
-            .col-r-div {
-                width: 80% !important;
-                max-width: 200px !important;
-                padding: 15px 0;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            .about-text .abt-p {
-                font-size: 0.95rem;
-                padding: 0 10px;
-            }
-
-            .col-r-div h1 {
-                font-size: 36px;
-            }
-
-            .col-r-div h3 {
-                font-size: 12px;
-            }
-
-            .features .card {
+            .bg-blur {
                 padding: 1.25rem;
             }
 
-            .features .card h3 {
-                font-size: 1rem;
+            .bg-blur p {
+                font-size: 0.85rem;
+                margin-bottom: 0.75rem;
             }
 
-            .features .card p {
-                font-size: 1.1rem;
+            .card {
+                padding: 1rem;
             }
 
-            .features .card img {
-                width: 72px;
-                height: 72px;
+            .card img {
+                width: 60px;
             }
 
-            .button {
-                font-size: 0.875rem;
-                padding: 0.7rem 1.2rem;
+            .card h3 {
+                font-size: 0.95rem;
+                margin-top: 0.75rem;
+            }
+
+            .card p {
+                font-size: 0.85rem;
             }
 
             .footer-column h4,
             .footer-column3 h4 {
-                font-size: 13px;
+                font-size: 12px;
             }
 
             .footer-column a,
             .footer-column3 a,
             .footer-column p {
-                font-size: 14px;
+                font-size: 13px;
             }
 
-            .footer-bottom {
-                font-size: 0.78rem;
-                padding: 0 10px;
+            .footer-column iframe {
+                height: 150px;
+            }
+
+            .social-buttons {
+                gap: 10px;
             }
 
             .social-buttons a {
-                width: 42px;
-                height: 42px;
-                font-size: 17px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .footer-bottom {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Extra small devices - 360px and below */
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+
+            .card {
+                padding: 0.75rem;
+            }
+
+            .card h3 {
+                font-size: 0.9rem;
+            }
+
+            .bg-blur p {
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Navigation -->
     <nav>
-        <img class="nav-logo" src="img/logo.png" alt="Logo">
-
+        <img class="nav-logo" src="img/logo.png" alt="Sri Ram Computers Logo">
+        
         <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
 
         <div class="nav-gap" id="nav-links">
@@ -884,109 +707,109 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <header class="hero" id="home">
         <h1>Our Services</h1>
-        <p>Looking for reliable computer sales and services ? Get in touch—we’re just a message away</p>
+        <p>Looking for reliable computer sales and services? Get in touch—we're just a message away</p>
     </header>
 
-    <div id="services" class="services">
+    <!-- Services Section -->
+    <section id="services" class="services">
         <div class="features">
+            <!-- Service 1: Computer Rentals -->
             <div class="out">
                 <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/17419/17419744.png" alt="Web Dev Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/17419/17419744.png" alt="Laptop Icon">
                     <h3><i class="fas fa-laptop-code"></i> Computers & Laptops Rentals</h3>
                 </div>
                 <div class="bg-blur">
-                    <p>Need desktops or laptops without the wallet pain? We rent them out for businesses and events with
-                        <b>fast setup, reliable support, and easy monthly pricing</b>. 💻
-                    </p>
-                    <p>Whether it’s 5 or 500, we deliver what you need—no tech tantrums required.</p>
-                    <p>Think of us as your on-call IT bestie: always ready, never asking <i>“Did you try turning it off
-                            and on again?”</i>.</p>
+                    <p>Need desktops or laptops without the wallet pain? We rent them out for businesses and events with <b>fast setup, reliable support, and easy monthly pricing</b>. 💻</p>
+                    <p>Whether it's 5 or 500, we deliver what you need—no tech tantrums required.</p>
+                    <p>Think of us as your on-call IT bestie: always ready, never asking <i>"Did you try turning it off and on again?"</i>.</p>
                     <p>Skip the hassle, rent smarter, and let us handle the headaches.</p>
-                    <p>Because life’s too short for computer problems (and grumpy accountants). 😎</p>
+                    <p>Because life's too short for computer problems (and grumpy accountants). 😎</p>
                 </div>
             </div>
 
+            <!-- Service 2: Custom PC Builds -->
             <div class="out">
                 <div class="bg-blur">
-                    <p>From <b>gaming rigs</b> to <b>video editing, animation, billing, and high-performance
-                            workstations</b> – we’ve got the power you need. ⚡</p>
+                    <p>From <b>gaming rigs</b> to <b>video editing, animation, billing, and high-performance workstations</b> – we've got the power you need. ⚡</p>
                     <p>Rent desktops or laptops tailored to your performance needs, without the scary price tags.</p>
                     <p>Setup is quick, support is solid, and pricing is kinder than your accountant.</p>
-                    <p>Whether it’s one machine or a full fleet, we deliver fast and hassle-free.</p>
+                    <p>Whether it's one machine or a full fleet, we deliver fast and hassle-free.</p>
                     <p>Work (or play) smarter—because your tech should <i>perform</i>, not complain. 😎</p>
                 </div>
                 <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/7067/7067817.png" alt="Logo Design Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7067/7067817.png" alt="Custom PC Icon">
                     <h3>Custom PC Builds</h3>
                 </div>
             </div>
 
+            <!-- Service 3: CCTV Installation -->
             <div class="out">
                 <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/9924/9924679.png" alt="Poster Design Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/9924/9924679.png" alt="CCTV Icon">
                     <h3>CCTV Installation</h3>
                 </div>
                 <div class="bg-blur">
-                    <p>Smart CCTV systems with <b>mobile viewing</b>, <b>high-quality footage</b>, and <b>expert
-                            installation</b> for your home, office, or shop. 📹</p>
+                    <p>Smart CCTV systems with <b>mobile viewing</b>, <b>high-quality footage</b>, and <b>expert installation</b> for your home, office, or shop. 📹</p>
                     <p>Keep an eye on what matters most—anytime, anywhere.</p>
-                    <p>Crystal-clear video that doesn’t miss a thing (yes, even that cookie thief at midnight!).</p>
+                    <p>Crystal-clear video that doesn't miss a thing (yes, even that cookie thief at midnight!).</p>
                     <p>Installed by pros, hassle-free, so you can focus on living, not wiring.</p>
-                    <p>Because safety isn’t optional—it’s peace of mind you can trust. 🔒</p>
+                    <p>Because safety isn't optional—it's peace of mind you can trust. 🔒</p>
                 </div>
             </div>
 
+            <!-- Service 4: AMC -->
             <div class="out">
                 <div class="bg-blur">
-                    <p>Hassle-free system upkeep with <b>regular checkups</b>, <b>priority support</b>, and
-                        <b>preventive care</b>. 🛠️
-                    </p>
+                    <p>Hassle-free system upkeep with <b>regular checkups</b>, <b>priority support</b>, and <b>preventive care</b>. 🛠️</p>
                     <p>Keep your IT infrastructure running smoothly, all year round.</p>
-                    <p>No downtime dramas, no “uh-oh” moments—just reliable performance.</p>
+                    <p>No downtime dramas, no "uh-oh" moments—just reliable performance.</p>
                     <p>Our experts handle the tech headaches before they even appear.</p>
                     <p>Because prevention beats panic every single time. ⚡</p>
                 </div>
                 <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/6900/6900465.png" alt="Marketing Icon">
-                    <h3><i class="fas fa-bullhorn"></i>Annual Maintenance Contracts</h3>
+                    <img src="https://cdn-icons-png.flaticon.com/512/6900/6900465.png" alt="AMC Icon">
+                    <h3><i class="fas fa-bullhorn"></i> Annual Maintenance Contracts</h3>
                 </div>
             </div>
 
+            <!-- Service 5: Printer Services -->
             <div class="out">
                 <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/13016/13016249.png" alt="Analytics Icon">
-                    <h3><i class="fas fa-chart-line"></i>Printer Services</h3>
+                    <img src="https://cdn-icons-png.flaticon.com/512/13016/13016249.png" alt="Printer Icon">
+                    <h3><i class="fas fa-chart-line"></i> Printer Services</h3>
                 </div>
                 <div class="bg-blur">
-                    <p>We offer <b>expert printer repairs</b>, <b>maintenance</b>, and <b>toner refills</b> to keep your
-                        printing hassle-free. 🖨️</p>
-                    <p>Smooth, efficient, and reliable—because deadlines don’t wait for paper jams.</p>
-                    <p>No more “low toner” panic right before that big meeting.</p>
+                    <p>We offer <b>expert printer repairs</b>, <b>maintenance</b>, and <b>toner refills</b> to keep your printing hassle-free. 🖨️</p>
+                    <p>Smooth, efficient, and reliable—because deadlines don't wait for paper jams.</p>
+                    <p>No more "low toner" panic right before that big meeting.</p>
                     <p>Our team keeps your printers running like clockwork, year-round.</p>
                     <p>Print smarter, stress less, and never miss a page. 📄</p>
                 </div>
             </div>
 
+            <!-- Service 6: Networking Solutions -->
             <div class="out">
                 <div class="bg-blur">
                     <p>Complete <b>wired and wireless networking</b> setup and support for homes and offices. 🌐</p>
                     <p>Enjoy fast, stable, and secure connectivity across all your devices.</p>
-                    <p>No more Wi-Fi dead zones or “why is the internet so slow?” moments.</p>
-                    <p>From installation to troubleshooting, we’ve got you covered.</p>
+                    <p>No more Wi-Fi dead zones or "why is the internet so slow?" moments.</p>
+                    <p>From installation to troubleshooting, we've got you covered.</p>
                     <p>Stay connected, stay productive—without the network headaches. ⚡</p>
                 </div>
                 <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/12341/12341435.png" alt="Social Media Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/12341/12341435.png" alt="Network Icon">
                     <h3>Networking Solutions</h3>
                 </div>
             </div>
 
-
+            <!-- Service 7: Firewall Management -->
             <div class="out">
                 <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/16863/16863099.png" alt="Logo Design Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/16863/16863099.png" alt="Firewall Icon">
                     <h3>Firewall Management</h3>
                 </div>
                 <div class="bg-blur">
@@ -994,10 +817,11 @@
                     <p>We block threats, monitor traffic, and protect your digital environment 24/7.</p>
                     <p>No more sleepless nights worrying about hackers or data leaks.</p>
                     <p>Our experts keep your defenses strong while you focus on growth.</p>
-                    <p>Because in business, safety isn’t opt</p>
+                    <p>Because in business, safety isn't optional—it's essential. 🛡️</p>
                 </div>
             </div>
 
+            <!-- Service 8: Data Recovery -->
             <div class="out">
                 <div class="bg-blur">
                     <p>Secure your business with our <b>Safe Retrieval and Protection</b> service. 📂</p>
@@ -1007,14 +831,15 @@
                     <p>Because your data deserves a second chance—and strong protection. 🔐</p>
                 </div>
                 <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/10838/10838496.png" alt="Logo Design Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/10838/10838496.png" alt="Data Recovery Icon">
                     <h3>Data Recovery & Backup Solutions</h3>
                 </div>
             </div>
 
+            <!-- Service 9: On-Site Support -->
             <div class="out">
                 <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/17873/17873189.png" alt="Logo Design Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/17873/17873189.png" alt="Support Icon">
                     <h3>On-Site Technical Support</h3>
                 </div>
                 <div class="bg-blur">
@@ -1022,32 +847,27 @@
                     <p>We provide quick, professional diagnosis and resolution.</p>
                     <p>No more waiting weeks for fixes—help arrives when you need it.</p>
                     <p>Our experts handle the tech, so you can focus on what matters.</p>
-                    <p>Because downtime is expensive, and we don’t like wasting time either. ⚡</p>
+                    <p>Because downtime is expensive, and we don't like wasting time either. ⚡</p>
                 </div>
             </div>
         </div>
-        <!-- Add service content -->
-    </div>
+    </section>
 
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-content">
-
             <div class="footer-columns">
-                <!-- Services -->
+                <!-- Location Map -->
                 <div class="footer-column">
                     <div class="map">
-                        <p><iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3471.8677918205467!2d80.22515581290097!3d13.040030108815001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266fea739a29b%3A0xa30458970c34dec3!2sSri%20Ram%20Computers!5e1!3m2!1sen!2sin!4v1753378066794!5m2!1sen!2sin"
-                                width="270" height="270" style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
-                        <p>Hello World</p>
-                        </p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3471.8677918205467!2d80.22515581290097!3d13.040030108815001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266fea739a29b%3A0xa30458970c34dec3!2sSri%20Ram%20Computers!5e1!3m2!1sen!2sin!4v1753378066794!5m2!1sen!2sin"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
 
                 <!-- Quick Links -->
-                <div class="footer-column footer-col1">
+                <div class="footer-column">
                     <h4>Quick Links</h4>
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
@@ -1070,22 +890,52 @@
                 <div class="footer-column3">
                     <h4>Follow Us</h4>
                     <div class="social-buttons egeon">
-                        <a href="http://facebook.com/profile.php?id=61578078930568" class="fb" title="Facebook"
-                            target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/sriramcomputers_chennai?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                            class="insta" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- <a href="#" class="yt" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a> -->
+                        <a href="http://facebook.com/profile.php?id=61578078930568" class="fb" title="Facebook" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/sriramcomputers_chennai?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="insta" title="Instagram" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Social and Copyright -->
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p>© 2025 Sri Ram Computers. All rights reserved.</p>
+                <p>&copy; 2025 Sri Ram Computers. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+            menuToggle.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', menuToggle.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-gap a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                navLinks.classList.remove('show');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
 </body>
 
 </html>
