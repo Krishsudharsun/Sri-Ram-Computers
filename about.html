@@ -4,7 +4,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | Sri Ram Computers</title>
+  <title>About Sri Ram Computers | 25+ Years IT Experience in Chennai</title>
+  <!-- SEO Meta -->
+  <meta name="description"
+    content="Learn about Sri Ram Computers – a trusted IT partner in Chennai for over 25 years, offering reliable computer sales, rentals, and services for homes and businesses.">
+  <meta name="keywords"
+    content="about Sri Ram Computers, IT company Chennai, computer services Chennai, trusted IT partner Chennai">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Sri Ram Computers">
+  <link rel="canonical" href="https://www.sriramcomputers.com/about.html">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sriramcomputers.com/about.html">
+  <meta property="og:title" content="About Sri Ram Computers | Chennai's Trusted IT Partner">
+  <meta property="og:description"
+    content="Over 25 years of IT expertise in Chennai. Sales, service, rentals and support for individuals and businesses.">
+  <meta property="og:image" content="https://www.sriramcomputers.com/img/aboutus.jpg">
+  <meta property="og:site_name" content="Sri Ram Computers">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Sri Ram Computers | Chennai's Trusted IT Partner">
+  <meta name="twitter:description"
+    content="Over 25 years of IT expertise in Chennai. Sales, service, rentals and support for individuals and businesses.">
+  <meta name="twitter:image" content="https://www.sriramcomputers.com/img/aboutus.jpg">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display&family=Bebas+Neue&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/about.css">
   <link rel="icon" type="image/x-icon" href="/img/fav.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,22 +40,24 @@
 
 <body>
   <nav>
-    <div class="nav-container">
-      <div class="nav-logo">
-        <a href="index.html"><img class="logo" src="img/logo.png" alt="Logo"></a>
-      </div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#about">About Us</a>
-        <a href="index.html#services">Our Services</a>
-        <a href="index.html#contact">Contact Us</a>
-      </div>
+    <img class="nav-logo" src="img/logo.png" alt="Logo">
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-gap" id="nav-links">
+      <a href="index.html" class="btn">Home</a>
+      <a href="index.html#about" class="btn">About Us</a>
+      <a href="index.html#services" class="btn">Our Services</a>
+      <a href="index.html#contact" class="btn">Contact Us</a>
     </div>
   </nav>
-  <div class="hero">
-    <h2>About Us</h2>
+
+  <header class="hero" id="home">
+    <h1>About Us</h1>
     <p>Powered by <span>Trust</span>. Driven by <span>Technology</span></p>
-  </div>
+  </header>
 
   <div class="about-container">
     <div class="text-container">
@@ -85,35 +113,73 @@
           We use quality parts and proven methods.
           Your satisfaction is our priority, always.
           Because quality isn’t just a promise; it’s our standard.</p>
+      </div>
+      <div class="reason-item">
+        <h3>5. Customer-Centric</h3>
+        <p>We put you first, always.
+          Your needs shape our services, not the other way around.
+          We’re here to listen, understand, and deliver.
+          Every interaction is about making your experience better.
+          Because at the end of the day, it’s all about you.</p>
+      </div>
     </div>
-    <div class="reason-item">
-      <h3>5. Customer-Centric</h3>
-      <p>We put you first, always.
-        Your needs shape our services, not the other way around.
-        We’re here to listen, understand, and deliver.
-        Every interaction is about making your experience better.
-        Because at the end of the day, it’s all about you.</p>
-  </div>
-  </div>
   </div>
 
-  <footer>
-    <p> © 2025 Sri Ram Computer. All rights reserved. Built with precision. Powered by Themeoption.</p>
-    <p>Follow us on:
-      <a href="https://www.facebook.com/share/1N53GJpiCB/" target="_blank">Facebook</a>
-      <a href="https://www.instagram.com/sriramcomputers_chennai/?utm_source=ig_web_button_share_sheet"
-        target="_blank">Instagram</a>
-      <a href="mailto:admin@sriramcomputers.in" target="_blank">Mail: admin@sriramcomputers.in</a>
-      <a href="tel:+919444114331">+91 94441 14331</a> | <a href="tel:04424718226">044 24718226</a>
-    </p>
+  <footer class="site-footer">
+    <div class="footer-content">
 
-    <p>Services</p>
-    <ul>
-      <li>Network Protection</li>
-      <li>Server Protection</li>
-      <li>Vulnerability Assessment</li>
-      <li>SPAM Protection</li>
-    </ul>
+      <div class="footer-columns">
+        <!-- Services -->
+        <div class="footer-column">
+          <div class="map">
+            <p><iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3471.8677918205467!2d80.22515581290097!3d13.040030108815001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266fea739a29b%3A0xa30458970c34dec3!2sSri%20Ram%20Computers!5e1!3m2!1sen!2sin!4v1753378066794!5m2!1sen!2sin"
+                width="270" height="270" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            <p>Hello World</p>
+            </p>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-column footer-col1">
+          <h4>Quick Links</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-column">
+          <h4>Contact Us</h4>
+          <p>📞 +91 94441 14331</p>
+          <a href="mailto:admin@sriramcomputers.com">
+            <p>✉️ admin@sriramcomputers.com</p>
+          </a>
+          <p>📍 43a, Lake View Road, W Mambalam Rd, W, West Mambalam, Chennai, Tamil Nadu 600033</p>
+        </div>
+
+        <!-- Social Links -->
+        <div class="footer-column3">
+          <h4>Follow Us</h4>
+          <div class="social-buttons egeon">
+            <a href="http://facebook.com/profile.php?id=61578078930568" class="fb" title="Facebook" target="_blank"><i
+                class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/sriramcomputers_chennai?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              class="insta" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+            <!-- <a href="#" class="yt" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Social and Copyright -->
+      <div class="footer-bottom">
+        <p>© 2025 Sri Ram Computers. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 </body>
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /css/
+Sitemap: https://www.sriramcomputers.com/sitemap.xml
